@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body >
+    <div class="one"></div>
+    <div class="two"></div>
+    <div class="three"></div>
+    <div class="four"></div>
+    <script>
+        // создаем переменную с ссылкой
+        const url = 'https://api.nasa.gov/planetary/apod?api_key=Jur1b1xkKOkenNuro0eVFrchFmdM932ZhH6bPT91';
+        // извлекаем из ссылки данные
+        const data = fetch(url)
+        //записываем их как json 
+        .then( (response) => response.json() ) 
+        .then( (data) => {
+            console.log('data', data)
+
+            let htm = JSON.stringify(data['title'])
+            let title = document.querySelector('.one').innerHTML = "<h1 class='name'></h1>";
+            let designation = document.querySelector('.name').innerHTML = htm;
+            
+            let explanation = JSON.stringify(data['explanation'])
+            let inter = document.querySelector('.two').innerHTML = "<p class='exp'></p>";
+            let explan = document.querySelector('.exp').innerHTML = explanation;
+            
+            let photo = JSON.stringify(data['url'])
+            let photos = document.querySelector('.three').innerHTML =  "<img height='350' class='photo' src= 'https://apod.nasa.gov/apod/image/2302/magellanic1200.jpg'>";
+
+            let date = JSON.stringify(data['date']);
+            let datas = document.querySelector('.four').innerHTML = "<p class='dt'></p>";
+            let d = document.querySelector('.dt').innerHTML = date;
+    
+        })
+        
+    </script>
+</body>
+</html>
+
